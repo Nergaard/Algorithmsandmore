@@ -1,4 +1,4 @@
-# Algorithmsandmore
+# Algorithms
 
 ## Algorithms in code
 Tasks related to algorithms. 
