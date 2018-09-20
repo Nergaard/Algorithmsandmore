@@ -1,17 +1,23 @@
 function counting_sort_letters(K, P)
     #Finding the largest number in the list
-    A =  K
+    A = []
     for i = 1 : length(K)
         stringy = K[i]
-        append!(K[i], Int64(stringy[P]))
+        numby = []
+        for t = 1 : length(stringy)
+            append!(numby, (Int64(stringy[t])-(Int64('a'))+1))
+        end
+        append!(A, [numby])
     end
     return A
 
-    currentmax = A[1]
+
+
+    currentmax = A[1][P]
     for i = 0 : length(A)-1
         i += 1
-        if currentmax < A[i]
-            currentmax = A[i]
+        if currentmax < A[i][P]
+            currentmax = A[i][P]
         end
     end
 
@@ -23,7 +29,7 @@ function counting_sort_letters(K, P)
 
     #Counting how many occurences there is of each number up to the largest number
     for i = 1 : length(A)
-        emptyarray[A[i]]+=1
+        emptyarray[A[i][P]]+=1
         i += 1
     end
     countarray = emptyarray
@@ -37,14 +43,11 @@ function counting_sort_letters(K, P)
     for i = 1 : j
         append!(B, " ")
     end
-
     while j > 0
         B[countarray[A[j]]] = A[j]
-        countarray[A[j]] -= 1
+        countarray[A[j][P]] -= 1
         j -= 1
     end
-
-    return countarray, B
 end
 
 
