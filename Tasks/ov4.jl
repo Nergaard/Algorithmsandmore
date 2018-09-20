@@ -1,10 +1,9 @@
 function counting_sort_letters(K, P)
     #Finding the largest number in the list
-    A =  []
+    A =  K
     for i = 1 : length(K)
-        
         stringy = K[i]
-        append!(A, stringy[P])
+        append!(K[i], Int64(stringy[P]))
     end
     return A
 
