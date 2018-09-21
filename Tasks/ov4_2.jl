@@ -1,4 +1,4 @@
-function counting_sort_letters(A, position)
+function counting_sort_length(A)
     #Finding the largest number in the list
     K = []
     for i = 1 : length(A)
@@ -10,11 +10,29 @@ function counting_sort_letters(A, position)
         append!(K, [numby])
     end
 
-    currentmax = K[1][position]
-    for i = 0 : length(K)-1
+    I = []
+    for i = 1 : length(A)
+        if length(A[i])>0
+            append!(I,length(A[i])+1)
+        else
+            append!(I,1)
+        end
+    end
+
+    N = []
+    for i = 1 : length(K)
+        F = [I[i]]
+        for j = 1 : length(K[i])
+            append!(F, K[i][j])
+        end
+        append!(N, [F])
+    end
+
+    currentmax = N[1][1]
+    for i = 0 : length(N)-1
         i += 1
-        if currentmax < K[i][position]
-            currentmax = K[i][position]
+        if currentmax < N[i][1]
+            currentmax = N[i][1]
         end
     end
 
@@ -25,8 +43,8 @@ function counting_sort_letters(A, position)
     end
 
     #Counting how many occurences there is of each number up to the largest number
-    for i = 1 : length(K)
-        emptyarray[K[i][position]]+=1
+    for i = 1 : length(N)
+        emptyarray[N[i][1]]+=1
         i += 1
     end
     countarray = emptyarray
@@ -35,14 +53,17 @@ function counting_sort_letters(A, position)
         countarray[i] = countarray[i] + countarray[i-1]
     end
 
+    ncount = countarray
+
+
     B = []
-    j = length(K)
+    j = length(N)
     for i = 1 : j
         append!(B, " ")
     end
-    while j > 0
-        B[countarray[K[j][position]]] = K[j]
-        countarray[K[j][position]] -= 1
+    while j > 0 && N[j][1] != 0
+        B[ncount[N[j][1]]] = N[j]
+        ncount[N[j][1]] -= 1
         j -= 1
     end
 
@@ -52,7 +73,7 @@ function counting_sort_letters(A, position)
         numby = B[i]
         stringy = ""
         cornum = 0
-        for t = 1 : length(numby)
+        for t = 2 : length(numby)
             cornum = numby[t] +96
             stringy *= Char(cornum)
         end
@@ -61,8 +82,6 @@ function counting_sort_letters(A, position)
     return S
 end
 
+A  =["bbbb", "aa","sdhfdsjhsadjhahjsdfa", "aaaa", "ccc", "fffffffff", "sadfasdfregsdfsdfa","a", ""]
 
-
-A = ["ccc","cba","ca","ab","abc","azb"]
-
-print(counting_sort_letters(A, 2))
+print(counting_sort_length(A))
