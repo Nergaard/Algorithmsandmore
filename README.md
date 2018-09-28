@@ -7,7 +7,7 @@ Will by time try to write an example of the most popular and effective algorithm
 
 ### Tasks 
 #### Oving 6
-This task asks for you to find the "lightest path from the top of a matrix to the bottom.
+This task asks you to find the "lightest" path from the top of a matrix to the bottom.
 You can only go straight down ore one diagonaly to the right or left.
 If the values are the same weight the value to the left is the standard choice.
 
