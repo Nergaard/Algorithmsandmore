@@ -13,7 +13,7 @@ If the values are the same weight the value to the left is the standard choice.
 
 Takes a matrix with values as argument.
 
-The first function "cumulative" strats at the top and calculates tha weight of the path from it to any of the allowd nodes below it.
+The first function "cumulative" strats at the top and calculates the weight of the path from it to any of the allowed nodes below it.
 This repeates until it has reached the bottom.
 
 The second function "back_track" starts at the bottom row at the smallest value.
